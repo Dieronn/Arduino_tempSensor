@@ -102,7 +102,6 @@ void setup() {
   }
 }
 void loop() {
-  //wywołanie funkcji menu
   menu();
 }
 
@@ -481,7 +480,7 @@ void relay() {
       actual_temp[i] = temperature;
       if (actual_temp[i] > reference[i]) {
         powered[i] = 1;
-        digitalWrite((3 + i), HIGH);  //3 żeby mieć dobry adres pinów przekaźników
+        digitalWrite((3 + i), HIGH);  //3 żeby mieć odpowiedni adres pinów przekaźników
       }
       else if (actual_temp[i] + histeresis[i] < reference[i]) {
         powered[i] = 0;
@@ -494,7 +493,7 @@ void relay() {
 }
 //transmisja danych po magistrali I2C do wskazanego adresu
 void I2C_transmission() {
-  Wire.beginTransmission(1);// dodać do którego adresu ma iść
+  Wire.beginTransmission(1);
   for (byte i = 0; i < SENSORS_NUM; i++) {
     Wire.write(actual_temp[i]);
   }
